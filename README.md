@@ -2,7 +2,7 @@
 Using a csv as an input, extract portions of youtube videos and convert to gif (optional)
 
 
-Edit the file input.csv adding one row per video
+Edit the file input.csv adding one row per video or region that you want to extract
 
 
 # Input    
