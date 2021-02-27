@@ -1,2 +1,28 @@
 # youtube-video-splitter
 Using a csv as an input, extract portions of youtube videos and convert to gif (optional)
+
+
+Edit the file input.csv adding one row per video
+
+
+# Input
+  ### output_name
+  It's the folder name that all your videos will be saved on 
+  Example: `MyVideo`. Videos will be saved at `output/MyVideo`
+    
+    
+  ### url
+  Url from youtube
+  >Example: `https://www.youtube.com/watch?v=jNQXAC9IVRw`
+    
+    
+  ### timestamps
+  The timestamp of the regions that you want to capture represented by `HH:MM:SS-HH:MM:SS`, it can have multiples timestamp separated by comma. 
+  >Example: `00:01:00-00:02-00,00:02:00-00:03:00`. This will generated two videos as output.
+  
+  
+  ### convert_to_gif 
+  It's `y` or `n`, if 'y' each extracted region of the video will be converted to gif format. 
+  >Example: `y`. All the regions extracted with this row will be saved as gif
+ 
+  
