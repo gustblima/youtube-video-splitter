@@ -1,5 +1,5 @@
 # youtube-video-splitter
-Using a csv as an input, extract portions of youtube videos and convert to gif (optional)
+Using a csv as an input, extract portions of youtube videos and converts to gif or mp4
 
 
 Edit the file input.csv adding one row per video or region that you want to extract
