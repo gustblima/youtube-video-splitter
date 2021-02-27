@@ -12,17 +12,10 @@ def download(url, output_name, timestamp, convert_to_gif=False):
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         downloaded = ydl.download([url])
-        timestamps = timestamp.split(",")
+        timestamps = timestamp.split(";")
         for i in range(len(timestamps)):
             t1, t2 = timestamps[i].split("-")
             clip = (VideoFileClip(f"{output_path}.mp4").subclip(t1, t2))
-            """
-            ffmpeg_extract_subclip(
-                filename= f"{output_full}.mp4", 
-                t1=t1,
-                t2=t2,
-                targetname=f"{output_name}/{output_name}_{i}.mp4")
-                """
             get_output_filename_with_ext = lambda ext: f"{output_path}_{t1}_{t2}.{ext}".replace(':', '')
 
             if convert_to_gif == 'y':
@@ -36,8 +29,8 @@ def download(url, output_name, timestamp, convert_to_gif=False):
 input_file = 'input.csv'
 tmp_file = f"{input_file}.tmp"
 with open(input_file, 'r', newline='') as csvfile, open(tmp_file, 'w+', newline='') as csvtempfile:
-    writer = csv.writer(csvtempfile, delimiter='|')
-    reader = csv.reader(csvfile, delimiter='|')
+    writer = csv.writer(csvtempfile, delimiter=',')
+    reader = csv.reader(csvfile, delimiter=',')
     for row in reader:
         output_name, url, timestamps, convert_to_gif, status = row
         if status == 'status':

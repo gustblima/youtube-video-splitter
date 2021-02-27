@@ -17,8 +17,8 @@ Edit the file input.csv adding one row per video
     
     
   ### timestamps
-  The timestamp of the regions that you want to capture represented by `HH:MM:SS-HH:MM:SS`, it can have multiples timestamp separated by comma. 
-  >Example: `00:01:00-00:02-00,00:02:00-00:03:00`. This will generated two videos as output.
+  The timestamp of the regions that you want to capture represented by `HH:MM:SS-HH:MM:SS`, it can have multiples timestamp separated by semicolon. 
+  >Example: `00:01:00-00:02-00;00:02:00-00:03:00`. This will generated two videos as output.
   
   
   ### convert_to_gif 
