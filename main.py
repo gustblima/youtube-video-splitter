@@ -4,14 +4,16 @@ import ffmpeg
 from moviepy.editor import *
 import csv
 
-def download(url, output_name, timestamp, convert_to_gif=False):
+def download(url, timestamp, convert_to_gif=False):
+    info = youtube_dl.YoutubeDL().extract_info(url, download=False)
+    output_name = f"{''.join(e for e in info['title'] if e.isalnum())[:15]}_{info['id']}"
     output_path = f"output\/{output_name}\/{output_name}"
     ydl_opts = {
         "outtmpl": f"{output_path}.%(ext)s",
         "format": "mp4"
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        downloaded = ydl.download([url])
+        ydl.download([url])
         timestamps = timestamp.split(";")
         for i in range(len(timestamps)):
             t1, t2 = timestamps[i].split("-")
@@ -32,12 +34,12 @@ with open(input_file, 'r', newline='') as csvfile, open(tmp_file, 'w+', newline=
     writer = csv.writer(csvtempfile, delimiter=',')
     reader = csv.reader(csvfile, delimiter=',')
     for row in reader:
-        output_name, url, timestamps, convert_to_gif, status = row
+        url, timestamps, convert_to_gif, status = row
         if status == 'status':
             writer.writerow(row)
         elif status != 'ok':
-            download(url, output_name, timestamps, convert_to_gif)
-            writer.writerow([output_name, url, timestamps, convert_to_gif, 'ok'])
+            download(url, timestamps, convert_to_gif)
+            writer.writerow([url, timestamps, convert_to_gif, 'ok'])
         else:
             writer.writerow(row)
 os.remove(input_file)
